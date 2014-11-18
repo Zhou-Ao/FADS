@@ -1,0 +1,223 @@
+/*
+* LSBC Financial Application Management System
+* Developed by NTU BC2402 AY1314S1, Chen Tao, Cheng Gibson, Kok Tze How, Xu Qianqian
+* File : cssstyle.css
+* Author : Cheng Gibson
+* Version : v1.0
+*
+* This file stores the CSS Formatting and Styles for the application's PHP pages
+*/
+
+/* 
+Main body CSS
+*/
+body{
+	background-image:url(./media/bg.jpg);
+	background-position:center center;
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	font-family:Calibri, Times, serif;
+}
+
+/* 
+Containers for key content divs (top, middle, bottom)
+*/
+.mainContainer{
+	top:0px; left:0px;
+	width:100%;
+	min-width:1000px;
+	min-height:400%;
+	overflow:hidden;
+	position:absolute;
+	margin-left:auto;
+	margin-right:auto;
+	overflow:visible;
+	position:relative;
+
+}
+.contentTop{
+	width:80%;
+	min-width:1000px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:0.5%;
+	margin-top:0%;
+	position:relative;
+}
+.contentMain{
+	width:80%;
+	min-width:1000px;
+	min-height:80%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:0.5%;	
+	color:black;
+	padding:0.5%;
+	overflow:visible;
+	position:relative;
+}
+.contentBtm{
+	height:5%;
+	margin-bottom:1%;
+	text-align:center;
+	background-image:url(./media/navBarBtm.png);
+	background-position:top;
+	background-repeat:repeat-x;
+	padding-top:5px;
+	padding-left:0.5%;
+	padding-right:0.5%;
+	font-style:oblique;
+	overflow:hidden;
+	position:fixed;
+	top:96%;
+	left:35%;
+}
+
+/* 
+Navigation bar
+*/
+.navBar{
+	width:100%;
+	height:90%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:0px;
+	overflow:hidden;
+	padding-bottom:5px;
+	background-image:url(./media/navBarBtm.png);
+	background-position:bottom;
+	background-repeat:repeat-x;
+	padding-left:1%;
+	padding-right:1%;
+}
+.navBarVertBar{
+	height:100%;
+	width:0.5%;
+	float:left;
+	background-image:url(./media/navBarVertBar.png);
+	background-position:center;
+	background-repeat:no-repeat;
+}
+.navBarButton{
+	height:100%;
+	margin-left:2%;
+	margin-right:2%;
+	float:left;
+	text-align:center;
+	
+	padding-top:0.5%;
+	position:relative;
+	overflow:hidden;
+	font-size:120%;
+	font-family:Segoe UI;
+}
+.navBarButton a{
+	text-decoration:none;
+	color:#03A;
+}
+.navBarButton a:hover{
+	color:#06F;
+}
+.navBarLogoAndName{
+	height:100%;
+	width:20%;
+	float:right;
+	text-align:left;
+	position:relative;
+	overflow:hidden;
+	font-size:70%;
+	font-family:Segoe UI;
+	padding-top:2.5%;
+}
+
+/* 
+Link buttons
+*/
+.linkButton{
+	padding:0.5%;
+	border:1px groove black;
+	border-radius:5px;
+	float:left;
+	margin-right:0.5%;
+	background:linear-gradient(white,#DDD);
+}
+.linkButton a{
+	font-size:125%;
+	text-decoration:none;
+	color:#366;
+}
+.linkButton a:hover{
+	color:#0CC;
+}
+
+/* 
+Div that aligns to center
+*/
+.centerer{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* 
+Page title
+*/
+.pageTitle{
+	font-size:150%;
+	font-weight:bold;
+	text-decoration:blink;	
+}
+
+/* 
+Table formatting and styles
+*/
+table.generatedReport{
+	border-spacing:0px;
+}
+table.generatedReport tr td{
+	border:1px solid black;
+	border-spacing:0px;
+	padding:5px;
+}
+table.formTemplate{
+	border:1px solid black;
+	border-spacing:0px;
+}
+table.formTemplate tr td{
+	border:1px solid black;
+	border-spacing:0px;
+	padding:5px;
+}
+td.rowTitle1{
+	text-align:center;
+	background:linear-gradient(#999,white);
+	font-size:150%;
+	font-weight:bold;
+}
+td.rowTitle2{
+	text-align:center;
+	font-style:oblique;
+	background:linear-gradient(#888,white);
+}
+td.rowTitle3{
+	text-align:center;
+	font-style:oblique;
+	background:linear-gradient(#DDD,white);
+}
+td.rowTitle4{
+	background:linear-gradient(#EEE,white);
+}
+.rowCell{
+}
+.rowSubtotal{
+	font-weight:bold;	
+}
+
+/* 
+Error message
+*/
+.errorMsg{
+	padding:1%;
+	color:red;
+	font-weight:bold;	
+}
