@@ -74,18 +74,6 @@ if(!isLoggedIn()){
 			if($_SESSION['canCreateFA'] || $_SESSION['canIssueDisbursement'] ){
 				echo "<div class=\"linkButton\"><a href=\"./createFA-disbursement-stg1.php\">Create FA - Disbursement</a></div>";	
 			}
-			
-			echo "<br /><br /><br />";
-			
-			// Displays button only if user has createUser permission
-			if($_SESSION['canCreateUser']){
-				echo "<div class=\"linkButton\"><a href=\"./createUser.php\">Create User</a></div>";
-			}
-			
-			// Displays button only if user has viewUser permission
-			if($_SESSION['canCreateUser']){
-				echo "<div class=\"linkButton\"><a href=\"./viewUser.php\">View/Edit/Delete User</a></div>";
-			}
 			?>
         	
         </div>

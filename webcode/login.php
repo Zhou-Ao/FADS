@@ -57,7 +57,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		// Checks for invalid inputs
 		if(!matchRegex($username,"/^[a-zA-Z0-9 ]+$/") || !matchRegex($password,"/^[a-zA-Z0-9 ]+$/")){
 			$errorMsg = "Invalid Login ID / Password.";
-			jsmsg('');
 			return;
 		}
 		
@@ -67,6 +66,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		
 		// Tries to login
 		$userID = tryLogin($username,$passwordHash);
+		
 		// Checks if userID is not -1; -1 means user was not logged in
 		if($userID!=-1){
 			// Sets session variable 'userID' as the userID

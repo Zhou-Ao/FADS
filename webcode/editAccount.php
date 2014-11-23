@@ -13,6 +13,7 @@ function setFormValues(){
 	setElementValue('firstName',firstName);
 	setElementValue('lastName',lastName);
 	
+	// Assigns the userType to the correct radio button
 	switch(userType){
 	case 1: {
 		document.getElementById('userType1').checked=true;
@@ -48,8 +49,8 @@ function setFormValues(){
 /*
  * LSBC Financial Application Management System
  * Developed by NTU BC2402 AY1314S1, Chen Tao, Cheng Gibson, Kok Tze How, Xu Qianqian
- * File : createFA-application.php
- * Author : Cheng Gibson, Zhou Ao
+ * File : editAccount.php
+ * Author : Cheng Gibson, Xu Qianqian
  * Version : v1.0
  *
  * This file provides the Edit Account functionality of the Application
@@ -164,10 +165,10 @@ function pageLogic(){
 		tidyInputs();
 
 		if(updateUser()){
-			$errorMsg = "Edition Successful!";
+			$errorMsg = "Update Successful!";
 			header("refresh:2;url=./account.php");
 		}else{
-			$errorMsg = "Edition Failed!";
+			$errorMsg = "Update Failed!";
 			tidyInputs();
 			dumpVarsToJS();
 			$pageState = 1;
@@ -323,18 +324,7 @@ function updateUser(){
 	//Update to systemuserdetails
 	$command2 = $_SESSION ['connection']->prepare ( "UPDATE systemuserdetails SET firstName=?, lastName=? WHERE userID=?" );
 	$command2->bind_param ( 'ssi', $firstName, $lastName, $userID );
-	$iscreate2 = $command2->execute ();
-
-
-// 	if (setUserperms()) {
-// 		$command3 = $_SESSION ['connection']->prepare ( "UPDATE systemuserperms SET isSuperuser=?, canViewUser=?,
-// 				 canCreateUser=?, canEditUser=?, canDeleteUser=?, canViewFA=?, canCreateFA=?, canEditFA=?,
-// 				 canDeleteFA=?, canSearchFA=?, canGenerateReport=?, canIssueDisbursement=? WHERE userID=?" );
-// 		$command3->bind_param ( 'iiiiiiiiiiiii', $isSuperuser, $canViewUser, $canCreateUser, $canEditUser,
-// 				 $canDeleteUser, $canViewFA, $canCreateFA, $canEditFA, $canDeleteFA, $canSearchFA, $canGenerateReport,
-// 				 $canIssueDisbursement, $userID );
-// 		$iscreate3 = $command3->execute ();
-// 	}
+	$iscreate2 = $command2->execute ();	
 	
 	//Edit SESSION variables
 	$_SESSION['firstName']=$firstName;
@@ -429,8 +419,8 @@ function setUserperms() {
     </div>
     
     <div class="contentMain">
-    	<div class="pageTitle">Edit System User</div>
-		<div class="linkButton"><a href="./account.php">Back to Account</a></div>
+    	<div class="pageTitle">Edit Account</div>
+		<div class="linkButton"><a href="./account.php">Back to Account Information</a></div>
         <br /><br /><br />
     	
         <div>
@@ -462,25 +452,17 @@ function setUserperms() {
         	<tr><td class="rowTitle3">
             First Name*
             </td><td class="rowTitle3">
-            <input type="text" name="firstName" id="firstName" width="" size="" value="" pattern="[a-zA-Z]+" required/>
+            <input type="text" name="firstName" id="firstName" width="" size="" value="" pattern="[a-zA-Z ]+" required/>
             </td></tr>
             
             <tr><td class="rowTitle3">
             Last Name*
             </td><td class="rowTitle3">
-            <input type="text" name="lastName" id="lastName" width="" size="" value="" pattern="[a-zA-Z]+" required/>
+            <input type="text" name="lastName" id="lastName" width="" size="" value="" pattern="[a-zA-Z ]+" required/>
             <input type="radio" name="userType" id="userType1" width="" size="" value="1" hidden/>
             <input type="radio" name="userType" id="userType2" width="" size="" value="2" hidden/>
             <input type="radio" name="userType" id="userType3" width="" size="" value="3" hidden/>
             </td></tr>
-            
-<!--             <tr><td class="rowTitle3"> -->
-<!--             User Type* -->
-<!--             </td><td class="rowTitle3"> -->
-<!--             Super User<input type="radio" name="userType" id="userType1" width="" size="" value="1"/><br /> -->
-<!--             Administrator<input type="radio" name="userType" id="userType2" width="" size="" value="2"/><br /> -->
-<!--             System User<input type="radio" name="userType" id="userType3" width="" size="" value="3"/> -->
-<!--             </td></tr> -->
             
             <tr><td colspan="2" class="rowTitle3">
             <input type="submit" />
@@ -505,8 +487,7 @@ function setUserperms() {
 //2: Create Entry, Invalid Password (password != repassword)
 //3: Create Entry, Invalid Data
 //4: Create Entry, Valid Data
-echo "<script type=\"text/javascript\">setFormValues();</script>";
-
+	echo "<script type=\"text/javascript\">setFormValues();</script>";
 ?>
 
 </body>

@@ -134,7 +134,7 @@ function pageLogic(){
 	
 	//passed all checks
 	updateFAApplication();
-	header("refresh:0.0001;url=./viewFA.php?faID=".$faID);
+	header("refresh:0.0001;url=./viewFA.php?updateSuccess=1&faID=".$faID);
 
 }
 pageLogic();
@@ -420,7 +420,7 @@ function updateFAApplication(){
             </td></tr>
             
             <tr><td class="rowTitle3">
-            FA Vetter*
+            FA Approver*
             </td><td class="rowTitle3">
             <input type="text" name="faVetter" id="faVetter" width="" size="" value="" pattern="[a-zA-Z ]*" required/>
             </td></tr>

@@ -7,7 +7,7 @@
 <script type="text/javascript">
 
 </script>
-<title>LSBC - View Financial Application</title>
+<title>LSBC - View Financial Applicant</title>
 <link rel="icon" type="image/png" href="./img/web/webIcon.gif" />
 </head>
 
@@ -20,7 +20,7 @@
 * Author : Cheng Gibson
 * Version : v1.0
 *
-* This file provides the View Financial Application functionality of the Application
+* This file provides the View Financial Applicant functionality of the Application
 */
 
 // Includes common code, starts session, and initializes database conenction
@@ -232,8 +232,11 @@ function tryGetNRICfromFAID($faID){
 function buildFADetailsRow($arr){
 	global $canViewFA,$canCreateFA,$canEditFA,$canDeleteFA;
 	$toreturn = "<tr>";
+	$toreturn .= "<td class=\"rowTitle2\" colspan=\"12\" style=\"text-align:left;\">FA Detail</td>";
+	$toreturn .= "</tr>";
 	
-	$toreturn .= "<td class=\"rowTitle2\">faID</td>";
+	$toreturn .= "<tr>";
+	//$toreturn .= "<td class=\"rowTitle2\">faID</td>";
 	$toreturn .= "<td class=\"rowTitle2\">NRIC</td>";
 	$toreturn .= "<td class=\"rowTitle2\">First Name</td>";
 	$toreturn .= "<td class=\"rowTitle2\">Last Name</td>";
@@ -248,7 +251,7 @@ function buildFADetailsRow($arr){
 	$toreturn .= "<td class=\"rowTitle2\">&nbsp;</td>";
 	$toreturn .= "</tr>";
 	
-	$toreturn .= "<td class=\"rowTitle4\">".$arr['faID']."</td>&nbsp;";
+	//$toreturn .= "<td class=\"rowTitle4\">".$arr['faID']."</td>&nbsp;";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr['nric']."</td>&nbsp;";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr['firstName']."</td>&nbsp;";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr['lastName']."</td>&nbsp;";
@@ -282,7 +285,10 @@ function buildFAApplicationRow($arr){
 	global $canViewFA,$canCreateFA,$canEditFA,$canDeleteFA;
 	
 	$toreturn = "<tr>";
-	$toreturn .= "<td class=\"rowTitle2\">faApplicationID</td>";
+	$toreturn .= "<td class=\"rowTitle2\" colspan=\"12\" style=\"text-align:left;\">FA Application</td>";
+	$toreturn .= "</tr>";
+	
+	$toreturn .= "<tr>";
 	$toreturn .= "<td class=\"rowTitle2\">Type</td>";
 	$toreturn .= "<td class=\"rowTitle2\">Description</td>";
 	$toreturn .= "<td class=\"rowTitle2\">Start Date</td>";
@@ -293,10 +299,10 @@ function buildFAApplicationRow($arr){
 	$toreturn .= "<td class=\"rowTitle2\">FA Vetter</td>";
 	$toreturn .= "<td class=\"rowTitle2\">Total Amt. Approved</td>";
 	$toreturn .= "<td class=\"rowTitle2\">Total Amt. Disbursed</td>";
+	$toreturn .= "<td class=\"rowTitle2\">faApplicationID</td>";
 	$toreturn .= "<td class=\"rowTitle2\" colspan=\"2\"></td>";
 	$toreturn .= "</tr>";
 	
-	$toreturn .= "<td class=\"rowTitle4\">".$arr[0]."</td>&nbsp;";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr[2]."</td>&nbsp;";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr[3]."</td>&nbsp;";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr['startDate']."</td>&nbsp;";
@@ -307,6 +313,7 @@ function buildFAApplicationRow($arr){
 	$toreturn .= "<td class=\"rowTitle4\">".$arr['faVetter']."</td>&nbsp;";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr['totalAmtApproved']."</td>&nbsp;";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr['totalAmtDisbursed']."</td>";
+	$toreturn .= "<td class=\"rowTitle4\">".$arr[0]."</td>&nbsp;";
 	
 	$toreturn .= "<td class=\"rowTitle4\" colspan=\"2\">";
 	// Shows edit button only when user has EditFA permission
@@ -333,7 +340,7 @@ function buildFADisbursementRow($arr,$hasPrintedDisbursementHeader){
 	
 	if($hasPrintedDisbursementHeader){
 		$toreturn .= "<tr>";
-		$toreturn .= "<td class=\"rowTitle2\">faDisbursementID</td>";
+		//$toreturn .= "<td class=\"rowTitle2\">faDisbursementID</td>";
 		$toreturn .= "<td class=\"rowTitle2\">Date Disbursed</td>";
 		$toreturn .= "<td class=\"rowTitle2\">Type</td>";
 		$toreturn .= "<td class=\"rowTitle2\">Amount</td>";
@@ -345,7 +352,7 @@ function buildFADisbursementRow($arr,$hasPrintedDisbursementHeader){
 		$toreturn .= "</tr>";
 	} 
 			
-	$toreturn .= "<td class=\"rowTitle4\">".$arr['faDisbursementID']."</td>";
+	//$toreturn .= "<td class=\"rowTitle4\">".$arr['faDisbursementID']."</td>";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr['dateDisbursed']."</td>&nbsp;";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr['type']."</td>&nbsp;";
 	$toreturn .= "<td class=\"rowTitle4\">".$arr['amount']."</td>&nbsp;";
@@ -387,8 +394,8 @@ function buildFADisbursementRow($arr,$hasPrintedDisbursementHeader){
     </div>
     
     <div class="contentMain">
-    	<div class="pageTitle">View Financial Application</div>
-        <div class="linkButton"><a href="./searchFA.php">Back to Search Financial Application</a></div>
+    	<div class="pageTitle">View Financial Applicant</div>
+        <div class="linkButton"><a href="./searchFA.php">Back to Search Financial Applicant</a></div>
         <div class="linkButton"><a href="./createFA-application.php?faID=<?php echo $faID; ?>">Create Application</a></div>
         <div class="linkButton"><a href="./createFA-disbursement-stg2.php?nric=<?php echo tryGetNRICfromFAID($faID); ?>">Create Disbursement</a></div>
         
@@ -399,7 +406,7 @@ function buildFADisbursementRow($arr,$hasPrintedDisbursementHeader){
 			<?php echo $viewOutput; ?>
     	</div>
     <div>
-    	
+    	<br /><br />
 		<div class="contentBtm">LSBC Financial Application Management System v1.0 @ 2014</div>
 	
 </div>	

@@ -9,6 +9,9 @@
 * This file stores the common functionalities used by the many PHP pages in the Application
 */
 
+// Suppresses errors (for Live environment)
+error_reporting(0);
+
 // Checks if user is logged in
 function isLoggedIn(){
 	if(isset($_SESSION['userID'])){
@@ -20,7 +23,7 @@ function isLoggedIn(){
 
 // Initializes the user's connection session variable for database usage
 function initializeDB(){
-	$_SESSION['connection'] =  new mysqli("localhost","lsbcacc","lsbcacc","lsbc");
+	$_SESSION['connection'] =  new mysqli("localhost","lsbcacc","lsbcadmin","lsbc_fads");
 	//("localhost", "user", "password", "database");
 	// Check connection
 	if (mysqli_connect_errno())

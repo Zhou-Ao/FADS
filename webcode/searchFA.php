@@ -16,7 +16,7 @@ function setFormValues(){
 	setElementValue('endDate',endDate);
 }
 </script>
-<title>LSBC - Search Financial Application</title>
+<title>LSBC - Search Financial Applicant</title>
 <link rel="icon" type="image/png" href="./img/web/webIcon.gif" />
 </head>
 
@@ -29,7 +29,7 @@ function setFormValues(){
 * Author : Cheng Gibson
 * Version : v1.0
 *
-* This file provides the Search Financial Application functionality of the Application
+* This file provides the Search Financial Applicant functionality of the Application
 */
 
 // Includes common code, starts session, and initializes database connection
@@ -190,7 +190,7 @@ function buildDetailRow($row){
 	if($handphoneNum!=""){
 		$toreturn .= "<td class=\"rowTitle4\">".$row["handphoneNum"]."</td>&nbsp;";
 	}
-	$toreturn .= "<td><a href=\"./viewFA.php?faID=".$row["faID"]."\">Edit</a></td>&nbsp;";
+	$toreturn .= "<td><a href=\"./viewFA.php?faID=".$row["faID"]."\">View</a></td>&nbsp;";
 	
 	$toreturn .= "</tr>";
 	
@@ -302,7 +302,7 @@ function isSearchFAApplication(){
     </div>
 
 	<div class="contentMain">
-    	<div class="pageTitle">Search Financial Application</div>
+    	<div class="pageTitle">Search Financial Applicant</div>
     
     	<div style="float:left;margin-right:5%;">
     	<form method='GET'><table class="formTemplate">
@@ -314,7 +314,7 @@ function isSearchFAApplication(){
             <tr><td class="rowTitle3">
             NRIC
             </td><td class="rowTitle3">
-            <input type="text" name="nric" id="nric" width="" size="" value="" pattern="[a-zA-Z0-9]"/>
+            <input type="text" name="nric" id="nric" width="" size="" value="" pattern="[a-zA-Z0-9]*"/>
             </td></tr>
             
             <tr><td class="rowTitle3">
@@ -326,7 +326,7 @@ function isSearchFAApplication(){
             <tr><td class="rowTitle3">
             Handphone Num
             </td><td class="rowTitle3">
-            <input type="number" name="handphoneNum" id="handphoneNum" width="" size="" maxlength="8" value="" pattern="[0-9]{8}*"/>
+            <input type="number" name="handphoneNum" id="handphoneNum" width="" size="" maxlength="8" value="" pattern="[0-9]*"/>
             </td></tr>
             
             <tr><td colspan="2" class="rowTitle2">Applications</td></tr>
@@ -373,7 +373,7 @@ function isSearchFAApplication(){
             ?>
         </div>
 	</div>
-    
+    <br /><br />
     <div class="contentBtm">LSBC Financial Application Management System v1.0 @ 2014</div>
 	
 </div>		

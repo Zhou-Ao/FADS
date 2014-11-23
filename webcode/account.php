@@ -39,7 +39,7 @@ function setFormValues(){
 
 // 
 </script>
-<title>LSBC - Account</title>
+<title>LSBC - Account Information</title>
 <link rel="icon" type="image/png" href="./img/web/webIcon.gif" />
 </head>
 
@@ -48,11 +48,11 @@ function setFormValues(){
 /*
  * LSBC Financial Application Management System
  * Developed by NTU BC2402 AY1314S1, Chen Tao, Cheng Gibson, Kok Tze How, Xu Qianqian
- * File : createFA-application.php
- * Author : Cheng Gibson, Zhou Ao
+ * File : account.php
+ * Author : Cheng Gibson, Xu Qianqian
  * Version : v1.0
  *
- * This file provides the Edit Account functionality of the Application
+ * This file provides the Account functionality of the Application
  */
 
 // Includes common code, starts session, and initializes database connection
@@ -84,9 +84,9 @@ if(!isLoggedIn()){
     </div>
     
     <div class="contentMain">
-    	<div class="pageTitle">Edit Account</div>
+    	<div class="pageTitle">Account Information</div>
 
-        <div>
+        <div style="float:left;margin-right:2%;">
 			<form><table class="formTemplate">
             <tr><td colspan="2" class="rowTitle2">User</td></tr>
             <tr><td class="rowTitle3">
@@ -127,13 +127,23 @@ if(!isLoggedIn()){
             </td></tr>
             
         </table></form>
+        </div>
         
-        <div class="errorMsg">
-            	<?php echo $errorMsg; ?>
-            </div>   
+        <div style="">
+        	<?php
+        	// Displays button only if user has createUser permission
+			if($_SESSION['canCreateUser']){
+				echo "<div class=\"linkButton\"><a href=\"./createUser.php\">Create User</a></div>";
+			}
+			
+			// Displays button only if user has viewUser permission
+			if($_SESSION['canCreateUser']){
+				echo "<div class=\"linkButton\"><a href=\"./viewUser.php\">View/Edit/Delete User</a></div>";
+			}
+			?>
+        </div>
+        
     	</div>
-         
-    	<div>
     	
 		<div class="contentBtm">LSBC Financial Application Management System v1.0 @ 2014</div>
 	

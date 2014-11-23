@@ -13,6 +13,7 @@ function setFormValues(){
 	setElementValue('firstName',firstName);
 	setElementValue('lastName',lastName);
 	
+	// Assigns the userType to the correct radio button
 	switch(userType){
 	case 1: {
 		document.getElementById('userType1').checked=true;
@@ -32,10 +33,15 @@ function setFormValues(){
 		document.getElementById('userType3').checked=true;
 		break;
 	}
-	
+	default :{
+		// default case
+		document.getElementById('userType1').checked=false;
+		document.getElementById('userType2').checked=false;
+		document.getElementById('userType3').checked=true;
+		break;
+	}
+	}
 }
-
-// 
 </script>
 <title>LSBC - Create User</title>
 <link rel="icon" type="image/png" href="./img/web/webIcon.gif" />
@@ -45,7 +51,7 @@ function setFormValues(){
  * LSBC Financial Application Management System
  * Developed by NTU BC2402 AY1314S1, Chen Tao, Cheng Gibson, Kok Tze How, Xu Qianqian
  * File : createFA-application.php
- * Author : Cheng Gibson, Zhou Ao
+ * Author : Cheng Gibson, Xu Qianqian
  * Version : v1.0
  *
  * This file provides the Create User functionality of the Application
@@ -108,7 +114,7 @@ function pageLogic(){
 	//2: Create Entry, Invalid Password (password != repassword)
 	//3: Create Entry, Invalid Data
 	//4: Create Entry, Valid Data
-	
+	 
 	if($pageState==0.5){
 		return;
 	} else if($pageState==1){
@@ -117,7 +123,7 @@ function pageLogic(){
 		return;
 	} else if($pageState==2) {
 		dumpVarsToJS();
-		$errorMsg = "Invalid Password!";
+		$errorMsg = "Passwords do not match!";
 		return;
 	} else if($pageState==3) {
 		dumpVarsToJS();
@@ -131,8 +137,7 @@ function pageLogic(){
 		}else{
 			$errorMsg = "Creation Failed!";
 		}
-// 		$userID = 0;
-// 		$userID = tryGetUserIDfromUserName($userName);
+		
 	}
 }
 pageLogic();
@@ -179,7 +184,7 @@ function getPageState(){
 
 	//Check existing entry
 	if($userName!=""){
-		//Validate NRIC
+		//Validate username (ensure no existing user name)
 		$userID = tryGetUserIDfromUserName($userName);
 		if($userID!=-1){
 			return 1;
@@ -253,17 +258,16 @@ function createEntryUser(){
 	global $userName,$password,$repassword,$firstName,$lastName,$userType;
 	global $isSuperuser, $canViewUser, $canEditUser, $canCreateUser, $canDeleteUser, $canViewFA, $canSearchFA, $canCreateFA, $canEditFA, $canDeleteFA, $canGenerateReport, $canIssueDisbursement;
 	
-	// Get userID
-	$userID = null;
-	$userID = generateUserID ();
-	
 	// Generate password hash
 	$passwordHash = sha1($password);
 	
 	//Insert data to systemuser
-	$command1 = $_SESSION ['connection']->prepare ( "INSERT INTO systemuser VALUES(?,?,?)" );
-	$command1->bind_param ( 'iss', $userID, $userName, $passwordHash );
+	$command1 = $_SESSION ['connection']->prepare ( "INSERT INTO systemuser VALUES(NULL,?,?)" );
+	$command1->bind_param ( 'ss',$userName, $passwordHash);
 	$iscreate1 = $command1->execute ();
+	
+	//gets userID 
+	$userID = tryGetUserIDfromUserName($userName);
 	
 	//Insert data to systemuserdetails
 	$command2 = $_SESSION ['connection']->prepare ( "INSERT INTO systemuserdetails VALUES(?,?,?)" );
@@ -373,6 +377,10 @@ function setUserperms() {
     
     <div class="contentMain">
     	<div class="pageTitle">Create System User</div>
+        
+        <div class="linkButton"><a href="./account.php">Back to Account</a></div>
+        <br /><br /><br />
+        
         <div>
 			<form method='POST'><table class="formTemplate">
             <tr><td colspan="2" class="rowTitle2">User</td></tr>
@@ -442,8 +450,9 @@ function setUserperms() {
 //2: Create Entry, Invalid Password (password != repassword)
 //3: Create Entry, Invalid Data
 //4: Create Entry, Valid Data
+if($pageState!=0.5 && $pageState!=4){
 echo "<script type=\"text/javascript\">setFormValues();</script>";
-
+}
 ?>
 
 </body>

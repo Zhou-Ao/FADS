@@ -418,7 +418,7 @@ function createEntryFAApplication($faID){
             </td></tr>
             
             <tr><td class="rowTitle3">
-            FA Vetter*
+            FA Approver*
             </td><td class="rowTitle3">
             <input type="text" name="faVetter" id="faVetter" width="" size="" value="" pattern="[a-zA-Z ]*" required/>
             </td></tr>

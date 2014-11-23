@@ -161,7 +161,7 @@ $homeNum,$handphoneNum,$email,$description;
 	
 	tidyInputs();
 	
-	if($nric=="" || $firstName=="" ||$lastName=="" ||$dob=="" ||$address1=="" ||$poCode=="" || $homeNum=="" ||$handphoneNum==""){
+	if($nric=="" || $firstName=="" ||$lastName=="" ||$dob=="" ||$address1=="" ||$poCode==""){
 		//essential fields are empty
 		return 2;
 	}
@@ -316,15 +316,15 @@ $homeNum,$handphoneNum,$email,$description;
             </td></tr>
             
             <tr><td class="rowTitle3">
-            Home Number*
+            Home Number
             </td><td class="rowTitle3">
-            <input type="number" name="homeNum" id="homeNum" width="" size="" maxlength="8" value="" pattern="[0-9]{6}" required/>
+            <input type="text" name="homeNum" id="homeNum" width="" size="" maxlength="8" value="" pattern="[0-9]{6}"/>
             </td></tr>
             
             <tr><td class="rowTitle3">
-            Handphone Number*
+            Handphone Number
             </td><td class="rowTitle3">
-            <input type="number" name="handphoneNum" id="handphoneNum" width="" size="" maxlength="8" value="" pattern="[0-9]{8}" required/>
+            <input type="text" name="handphoneNum" id="handphoneNum" width="" size="" maxlength="8" value="" pattern="[0-9]{8}"/>
             </td></tr>
             
             <tr><td class="rowTitle3">

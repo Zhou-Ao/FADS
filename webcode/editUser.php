@@ -48,8 +48,8 @@ function setFormValues(){
 /*
  * LSBC Financial Application Management System
  * Developed by NTU BC2402 AY1314S1, Chen Tao, Cheng Gibson, Kok Tze How, Xu Qianqian
- * File : createFA-application.php
- * Author : Cheng Gibson, Zhou Ao
+ * File : editUser.php
+ * Author : Cheng Gibson, Xu Qianqian
  * Version : v1.0
  *
  * This file provides the Edit User functionality of the Application
@@ -330,7 +330,7 @@ function updateUser(){
 	$command2->bind_param ( 'ssi', $firstName, $lastName, $userID );
 	$iscreate2 = $command2->execute ();
 
-
+	//Update to systemuserperms
 	if (setUserperms()) {
 		$command3 = $_SESSION ['connection']->prepare ( "UPDATE systemuserperms SET isSuperuser=?, canViewUser=?,
 				 canCreateUser=?, canEditUser=?, canDeleteUser=?, canViewFA=?, canCreateFA=?, canEditFA=?,
@@ -431,7 +431,6 @@ function setUserperms() {
     <div class="contentMain">
     	<div class="pageTitle">Edit System User</div>
 		<div class="linkButton"><a href="./viewUser.php">Back to View User</a></div>
-        <div class="linkButton"><a href="./createUser.php">Create User</a></div>
         <br /><br /><br />
     	
         <div>

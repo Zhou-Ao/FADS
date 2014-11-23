@@ -1,0 +1,22 @@
+LSBC Financial Application Disbursement System : Deployment Instructions
++ Software Required
+- Windows Vista and Up
+ - Microsoft Visual C++ Redistibutable Versions 2005, 2008, 2010 and 2012
+- Wampserver 2.5 x86
+
++ Ports Required
+- Port 80
+
++ MySQL Account Required
+Account Name	lsbcacc
+Account Password	lsbcadmin
+Rights Required	All
+
++ Preinstalled Application Accounts
+Account Name	Account Password	Rights Given
+- lsbcsadmin	lsbcsadmin	Super Admin
+- lsbcadmin	lsbcadmin		Admin
+- lsbcuser		Lsbcuser		User
+
+
+

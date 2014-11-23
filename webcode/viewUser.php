@@ -13,6 +13,7 @@ function setFormValues(){
 	setElementValue('firstName',firstName);
 	setElementValue('lastName',lastName);
 	
+	// Assigns the userType to the correct radio button
 	switch(userType){
 	case 1: {
 		document.getElementById('userType1').checked=true;
@@ -30,11 +31,10 @@ function setFormValues(){
 		document.getElementById('userType3').checked=true;
 	}
 	
+	}
 }
-
-// 
 </script>
-<title>LSBC - Create User</title>
+<title>LSBC - View User</title>
 <link rel="icon" type="image/png" href="./img/web/webIcon.gif" />
 </head>
 
@@ -43,8 +43,8 @@ function setFormValues(){
 /*
  * LSBC Financial Application Management System
  * Developed by NTU BC2402 AY1314S1, Chen Tao, Cheng Gibson, Kok Tze How, Xu Qianqian
- * File : createFA-application.php
- * Author : Cheng Gibson, Zhou Ao
+ * File : viewUser.php
+ * Author : Cheng Gibson, Xu Qianqian
  * Version : v1.0
  *
  * This file provides the View User functionality of the Application
@@ -143,6 +143,10 @@ function buildUserRow($row){
     </div>
 
 	<div class="contentMain">
+    	<div class="pageTitle">View User</div>
+    	<div class="linkButton"><a href="./account.php">Back to Account Information</a></div>
+        <br/><br/>
+    	
 		<?php displayUsers()?>
 	</div>
 	

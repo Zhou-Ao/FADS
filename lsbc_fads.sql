@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2014 at 03:01 PM
--- Server version: 5.6.17
+-- Generation Time: Nov 14, 2014 at 01:25 AM
+-- Server version: 5.6.17-log
 -- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -17,26 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `lsbc`
+-- Database: `lsbc_fads`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `faapplicant`
---
-
-CREATE TABLE IF NOT EXISTS `faapplicant` (
-  `faID` int(255) NOT NULL AUTO_INCREMENT,
-  `isValid` tinyint(1) NOT NULL,
-  PRIMARY KEY (`faID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100 ;
-
---
--- Dumping data for table `faapplicant`
---
-
-
 
 -- --------------------------------------------------------
 
@@ -45,26 +27,20 @@ CREATE TABLE IF NOT EXISTS `faapplicant` (
 --
 
 CREATE TABLE IF NOT EXISTS `faapplication` (
-  `faApplicationID` int(11) NOT NULL AUTO_INCREMENT,
-  `faID` int(11) NOT NULL,
+  `faApplicationID` int(255) NOT NULL AUTO_INCREMENT,
+  `faID` int(255) NOT NULL,
   `type` varchar(30) NOT NULL,
   `description` text,
   `startDate` date NOT NULL,
   `endDate` date NOT NULL,
   `dateApplied` date NOT NULL,
-  `imgLoc` varchar(30) DEFAULT NULL,
+  `imgLoc` text,
   `isApproved` tinyint(1) NOT NULL,
   `faVetter` varchar(30) NOT NULL,
   `totalAmtApproved` double NOT NULL,
   `totalAmtDisbursed` double NOT NULL,
   PRIMARY KEY (`faApplicationID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
-
---
--- Dumping data for table `faapplication`
---
-
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=110 ;
 
 -- --------------------------------------------------------
 
@@ -81,19 +57,13 @@ CREATE TABLE IF NOT EXISTS `fadetails` (
   `address1` text NOT NULL,
   `address2` text,
   `poCode` varchar(6) NOT NULL,
-  `homeNum` varchar(11) NOT NULL,
-  `handphoneNum` varchar(11) NOT NULL,
+  `homeNum` varchar(8) DEFAULT NULL,
+  `handphoneNum` varchar(8) DEFAULT NULL,
   `email` text,
   `description` text,
   `imgLoc` text,
   PRIMARY KEY (`faID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=102 ;
-
---
--- Dumping data for table `fadetails`
---
-
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=108 ;
 
 -- --------------------------------------------------------
 
@@ -102,41 +72,18 @@ CREATE TABLE IF NOT EXISTS `fadetails` (
 --
 
 CREATE TABLE IF NOT EXISTS `fadisbursement` (
-  `faDisbursementID` int(11) NOT NULL AUTO_INCREMENT,
-  `faApplicationID` int(11) NOT NULL,
+  `faDisbursementID` int(255) NOT NULL AUTO_INCREMENT,
+  `faApplicationID` int(255) NOT NULL,
   `dateDisbursed` date NOT NULL,
   `type` varchar(30) NOT NULL,
   `amount` double NOT NULL,
   `paymentSchdNo` int(11) NOT NULL,
-  `issueIncharge` text NOT NULL,
-  `issueApprover` text NOT NULL,
+  `issueIncharge` varchar(30) NOT NULL,
+  `issueApprover` varchar(30) NOT NULL,
   `description` text,
   `imgLoc` text,
   PRIMARY KEY (`faDisbursementID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1006 ;
-
---
--- Dumping data for table `fadisbursement`
---
-
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `favalid`
---
-
-CREATE TABLE IF NOT EXISTS `favalid` (
-  `faID` int(255) NOT NULL,
-  `faApplicationID` int(11) NOT NULL,
-  PRIMARY KEY (`faID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `favalid`
---
-
 
 -- --------------------------------------------------------
 
@@ -156,7 +103,9 @@ CREATE TABLE IF NOT EXISTS `systemuser` (
 --
 
 INSERT INTO `systemuser` (`userID`, `userName`, `password`) VALUES
-(1, 'zhouao', '40bd001563085fc35165329ea1ff5c5ecbdbbeef');
+(4, 'lsbcuser', '5eec41b1bfd3153201b596f6dde168249109a2eb'),
+(5, 'lsbcsadmin', '8d1e07e178f65aec40be935675d54874d72e5f32'),
+(6, 'lsbcadmin', '6e5d0ff87a8f017146273d141365dc2021bb8683');
 
 -- --------------------------------------------------------
 
@@ -166,10 +115,19 @@ INSERT INTO `systemuser` (`userID`, `userName`, `password`) VALUES
 
 CREATE TABLE IF NOT EXISTS `systemuserdetails` (
   `userID` int(255) NOT NULL,
-  `firstName` text NOT NULL,
-  `lastName` text NOT NULL,
+  `firstName` varchar(30) NOT NULL,
+  `lastName` varchar(30) NOT NULL,
   PRIMARY KEY (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `systemuserdetails`
+--
+
+INSERT INTO `systemuserdetails` (`userID`, `firstName`, `lastName`) VALUES
+(4, 'LSBC', 'User'),
+(5, 'LSBC', 'Super Admin'),
+(6, 'LSBC', 'Admin');
 
 -- --------------------------------------------------------
 
@@ -193,6 +151,15 @@ CREATE TABLE IF NOT EXISTS `systemuserperms` (
   `canIssueDisbursement` tinyint(1) NOT NULL,
   PRIMARY KEY (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `systemuserperms`
+--
+
+INSERT INTO `systemuserperms` (`userID`, `isSuperuser`, `canViewUser`, `canCreateUser`, `canEditUser`, `canDeleteUser`, `canViewFA`, `canCreateFA`, `canEditFA`, `canDeleteFA`, `canSearchFA`, `canGenerateReport`, `canIssueDisbursement`) VALUES
+(4, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1),
+(5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+(6, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

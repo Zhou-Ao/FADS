@@ -2,11 +2,11 @@
 /*
  * LSBC Financial Application Management System
  * Developed by NTU BC2402 AY1314S1, Chen Tao, Cheng Gibson, Kok Tze How, Xu Qianqian
- * File : createFA-application.php
- * Author : Cheng Gibson, Zhou Ao
+ * File : deleteUser.php
+ * Author : Cheng Gibson, Xu Qianqian
  * Version : v1.0
  *
- * This file provides the Edit User functionality of the Application
+ * This file provides the Delete User functionality of the Application
  */
 
 // Includes common code, starts session, and initializes database connection
@@ -47,6 +47,7 @@ function pageLogic(){
 }
 pageLogic();
 
+// Deletes all relevant entries of the userID from the user tables
 function DeleteUser($userID) {
 	$command1 =  $_SESSION['connection']->prepare ( "DELETE FROM systemuser WHERE userID=?" ) or die ( "Failed to create prepared!" );
 	$command1->bind_param ( 'i', $userID ) and $command1->execute () or die ( "Failed to create prepared!" );
