@@ -1,7 +1,7 @@
 lsbc
 ====
 
-Financial Application Management System for Living Sanctuary Brethren Church (LSBC)
+Financial Application Database System (FADS) for Living Sanctuary Brethren Church
 
 
 This is a muti-user management system based on web server and mysql server implemented by PHP.
